@@ -3,11 +3,15 @@
    Colors can be names (teal) or hex codes (#1f6f8b).
    ============================================================ */
 :root {
-  --accent: #1f6f8b;       /* headings, links, the line under headings */
-  --text: #1d2730;         /* main text color */
-  --background: #f2f5f7;   /* page background */
-  --card: #ffffff;         /* background behind each section */
-  --font: "Segoe UI", Helvetica, Arial, sans-serif;
+  --accent: #4ade80;        /* Modern mint green for headers & interaction */
+  --accent-hover: #22c55e;  /* Deep green for interactive hover states */
+  --text: #f3f4f6;          /* High contrast bright off-white for body readability */
+  --text-muted: #9ca3af;    /* Soft grey for secondary text */
+  --background: #0f172a;    /* Deep slate/midnight blue background */
+  --card: #1e293b;          /* Elevated slate background for content boxes */
+  --card-border: #334155;   /* Subtle boundary border for sections */
+  --font-mono: "Fira Code", Consolas, "Courier New", monospace;
+  --font-sans: "Segoe UI", Helvetica, Arial, sans-serif;
 }
 
 /* Some color sets to try. Copy the lines you want into the box above.
@@ -17,7 +21,7 @@
    Plum:    --accent: #7a3e8e;  --background: #f5f0f7;
    Night:   --accent: #7cc4ff;  --text: #e6edf2;  --background: #15202b;  --card: #1e2d3b;
 
-   Fonts to try:  Georgia, serif     "Courier New", monospace     Verdana, sans-serif
+   Fonts to try:  Georgia, serif   "Courier New", monospace     Verdana, sans-serif
 */
 
 
@@ -27,62 +31,123 @@
 
 body {
   margin: 0;
-  padding: 2rem 1rem;
+  padding: 3rem 1rem;
   background: var(--background);
   color: var(--text);
-  font-family: var(--font);
-  font-size: 1.1rem;
-  line-height: 1.6;
+  font-family: var(--font-sans);
+  font-size: 1.05rem;
+  line-height: 1.7;
 }
 
 header, main, footer {
-  max-width: 40rem;
+  max-width: 42rem;
   margin: 0 auto;
 }
 
 header {
   text-align: center;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 header img {
   border-radius: 50%;
-  border: 4px solid var(--accent);
+  border: 3px solid var(--accent);
   object-fit: cover;
+  box-shadow: 0 4px 20px rgba(74, 222, 128, 0.15);
+  transition: transform 0.3s ease;
+}
+
+header img:hover {
+  transform: scale(1.03);
 }
 
 h1 {
-  margin: 0.5rem 0 0;
-  font-size: 2.2rem;
+  margin: 1rem 0 0.25rem;
+  font-size: 2.5rem;
+  letter-spacing: -0.025em;
 }
 
-header p {
-  margin: 0.2rem 0 0;
-  opacity: 0.8;
+header .subtitle {
+  margin: 0;
+  font-family: var(--font-mono);
+  color: var(--accent);
+  font-size: 1rem;
 }
 
 section {
   background: var(--card);
-  padding: 1.2rem 1.5rem;
-  margin-bottom: 1.2rem;
-  border-radius: 10px;
+  border: 1px solid var(--card-border);
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
 }
 
 h2 {
-  margin: 0 0 0.6rem;
-  font-size: 1.3rem;
+  margin: 0 0 1rem;
+  font-size: 1.25rem;
+  font-family: var(--font-mono);
   color: var(--accent);
-  padding-bottom: 0.3rem;
-  border-bottom: 3px solid var(--accent);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid var(--card-border);
 }
 
-a { color: var(--accent); }
+a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
 
-ul { padding-left: 1.2rem; margin: 0; }
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+ul {
+  padding-left: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+ul.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+ul.projects div.project-card ul.tags li,
+ul.tags li {
+  background: var(--background);
+  border: 1px solid var(--card-border);
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  border-radius: 6px;
+  padding: 0.25rem 0.75rem;
+}
+
+ul.projects li,
+ul.socials li {
+  margin-bottom: 0.5rem;
+  padding-left: 1.2rem;
+  position: relative;
+}
+
+ul.projects li div.project-card a::before,
+ul.socials li::before {
+  content: "\2192";  /* Right arrow symbol: → */
+  position: absolute;
+  left: 0;
+  color: var(--accent);
+}
 
 footer {
   text-align: center;
-  font-size: 0.9rem;
-  opacity: 0.7;
-  margin-top: 2rem;
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin-top: 3rem;
+  font-family: var(--font-mono);
 }
